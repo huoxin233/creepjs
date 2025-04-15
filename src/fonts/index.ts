@@ -204,7 +204,7 @@ export default async function getFonts() {
 			}
 
 			const pattern = new Set()
-			const emojiElems = [...doc.getElementsByClassName('pixel-emoji')]
+			const emojiElems = Array.from(document.getElementsByClassName('pixel-emoji'))
 			const emojiSet = emojiElems.reduce((emojiSet, el, i) => {
 				const style = getComputedStyle(el)
 				const emoji = emojis[i]
@@ -218,7 +218,7 @@ export default async function getFonts() {
 			}, new Set())
 
 			const pixelToNumber = (pixels) => +(pixels.replace('px', ''))
-			const pixelSizeSystemSum = 0.00001 * [...pattern].map((x) => {
+			const pixelSizeSystemSum = 0.00001 * Array.from(pattern).map((x) => {
 				return x.split(',').map((x) => pixelToNumber(x)).reduce((acc, x) => acc += (+x||0), 0)
 			}).reduce((acc, x) => acc += x, 0)
 
